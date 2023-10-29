@@ -25,12 +25,12 @@ export default function Card({ data }: CardProps): JSX.Element {
     try {
       const paymentJson: Payment = {
         description: "Charge for order 9999",
-        amount: 9999,
+        amount: Math.floor(Math.random() * 99999) + 1,
         currency: "THB",
         card: data.token,
       };
       const returnJson: Charge = await omise.charge(paymentJson);
-      if (returnJson.paid) Alert.alert("Payment is successful");
+      if (returnJson.paid) Alert.alert(`${paymentJson.amount} THB is paid`);
       else throw JSON.stringify(returnJson, null, 2);
     } catch (e: any) {
       console.log(e);
