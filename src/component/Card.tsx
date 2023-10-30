@@ -20,7 +20,7 @@ export default function Card({ data }: CardProps): JSX.Element {
   const yy: string = data.expiration_year.toString().slice(-2);
   const expiryDate: string = `${mm}/${yy}`;
 
-  async function pay(): Promise<any> {
+  async function pay(): Promise<void> {
     setIsDisable(true);
     try {
       const paymentJson: Payment = {
