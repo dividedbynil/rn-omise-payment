@@ -66,7 +66,7 @@ export default function AddCard({
       const security_code: number = +cvv;
 
       if (number.length != 16) throw "invalid card number";
-      if (month < 0 || month > 12) throw "invalid expiry month";
+      if (month < 1 || month > 12) throw "invalid expiry month";
       if (security_code < 100 || security_code > 999) throw "invalid CVV";
 
       const json: CardInput = {
