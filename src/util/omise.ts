@@ -67,17 +67,12 @@ class Omise {
       body,
     };
 
-    return new Promise((resolve, reject) => {
-      return fetch(urlEndpoint, params)
-        .then((response) => {
-          if (response.ok && response.status === 200) {
-            resolve(response.json());
-          } else {
-            reject(JSON.stringify(response, null, 2));
-          }
-        })
-        .catch((error) => reject(JSON.stringify(error, null, 2)));
-    });
+    const response: Response = await fetch(urlEndpoint, params);
+    if (response.ok && response.status === 200) {
+      return response.json();
+    } else {
+      throw JSON.stringify(response, null, 2);
+    }
   };
 }
 
