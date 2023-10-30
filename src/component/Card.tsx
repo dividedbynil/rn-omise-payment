@@ -14,14 +14,14 @@ type CardProps = {
   data: CardResToken;
 };
 export default function Card({ data }: CardProps): JSX.Element {
-  const [isDisable, setIsDisable] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   const mm: string = String(data.expiration_month).padStart(2, "0");
   const yy: string = data.expiration_year.toString().slice(-2);
   const expiryDate: string = `${mm}/${yy}`;
 
   async function pay(): Promise<void> {
-    setIsDisable(true);
+    setIsDisabled(true);
     try {
       const paymentJson: Payment = {
         description: "Charge for order 9999",
@@ -36,12 +36,12 @@ export default function Card({ data }: CardProps): JSX.Element {
       console.log(e);
       Alert.alert("Payment is failed", e);
     } finally {
-      setIsDisable(false);
+      setIsDisabled(false);
     }
   }
 
   return (
-    <TouchableOpacity style={styles.card} disabled={isDisable} onPress={pay}>
+    <TouchableOpacity style={styles.card} disabled={isDisabled} onPress={pay}>
       <View style={styles.cardContent}>
         <Image style={styles.logo} source={require("../../assets/visa.png")} />
 

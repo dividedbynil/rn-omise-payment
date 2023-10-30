@@ -28,7 +28,7 @@ export default function AddCard({
   const [expiryDate, setExpiryDate] = useState<string>("");
   const [cvv, setCvv] = useState<string>("");
 
-  const [isDisable, setIsDisable] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
@@ -58,7 +58,7 @@ export default function AddCard({
   }
 
   async function saveCard(): Promise<void> {
-    setIsDisable(true);
+    setIsDisabled(true);
     try {
       const number: string = cardNo.replace(/\D/g, "");
       const month: number = +expiryDate.slice(0, 2);
@@ -86,7 +86,7 @@ export default function AddCard({
       navigation.goBack();
     } catch (e: any) {
       Alert.alert("Error", e);
-      setIsDisable(false);
+      setIsDisabled(false);
     }
   }
 
@@ -155,10 +155,10 @@ export default function AddCard({
 
       <TouchableOpacity
         style={styles.button}
-        disabled={isDisable}
+        disabled={isDisabled}
         onPress={saveCard}
       >
-        {!isDisable ? (
+        {!isDisabled ? (
           <Text style={{ ...styles.text, color: "white" }}>Add Card</Text>
         ) : (
           <ActivityIndicator size="large" color="white" />
