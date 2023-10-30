@@ -14,7 +14,7 @@ type FetchParams = {
   method: string;
   cache: string;
   headers: Headers;
-  body: any;
+  body: string;
 };
 
 class Omise {
